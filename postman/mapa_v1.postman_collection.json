@@ -1,0 +1,199 @@
+{
+  "info": {
+    "name": "Mapa de conocimiento v1 (PHP)",
+    "description": "Los 7 endpoints de la v1, en el orden del quickstart. La tabla arranca con 14 filas. El borrado es LÓGICO: la petición 7 marca activo = FALSE y la fila se queda en la base.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. Diagnóstico",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8117/",
+          "host": [
+            "localhost"
+          ],
+          "port": "8117",
+          "path": []
+        },
+        "description": "Dice si la API está viva y qué versión es."
+      }
+    },
+    {
+      "name": "2. Listar",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8117/api/proyecto?limite=5",
+          "host": [
+            "localhost"
+          ],
+          "port": "8117",
+          "path": [
+            "api",
+            "proyecto?limite=5"
+          ]
+        },
+        "description": "Responde 200 con el sobre {tabla, limite, total, datos}. Con la tabla vacía respondería 204 SIN cuerpo, que no es un error — pero no se llega ahí arrancando: la tabla trae 14 filas."
+      }
+    },
+    {
+      "name": "3. Crear",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8117/api/proyecto",
+          "host": [
+            "localhost"
+          ],
+          "port": "8117",
+          "path": [
+            "api",
+            "proyecto"
+          ]
+        },
+        "description": "Todos los campos, incluida la llave. Falta uno → 422. Llave repetida → 500 con el mensaje del motor.",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"id\": 9001,\n  \"titulo\": \"Mapa de saberes del oriente\",\n  \"resumen\": \"Levantamiento participativo del conocimiento tradicional.\",\n  \"presupuesto\": 48000000.5,\n  \"tipo_financiacion\": \"interna\",\n  \"tipo_fondos\": \"Publico\",\n  \"fecha_inicio\": \"2026-02-01\",\n  \"fecha_fin\": null\n}"
+        }
+      }
+    },
+    {
+      "name": "4. Obtener uno",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8117/api/proyecto/9001",
+          "host": [
+            "localhost"
+          ],
+          "port": "8117",
+          "path": [
+            "api",
+            "proyecto",
+            "9001"
+          ]
+        },
+        "description": "200 con la ficha; 404 si no existe o está retirada."
+      }
+    },
+    {
+      "name": "5. Reemplazar (PUT)",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8117/api/proyecto/9001",
+          "host": [
+            "localhost"
+          ],
+          "port": "8117",
+          "path": [
+            "api",
+            "proyecto",
+            "9001"
+          ]
+        },
+        "description": "TODOS los campos menos la llave, que va en la ruta. Quítele 'titulo' y responde 422: ésa es la semántica de reemplazar.",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"titulo\": \"Mapa de saberes del oriente\",\n  \"resumen\": \"Levantamiento participativo del conocimiento tradicional.\",\n  \"presupuesto\": 48000000.5,\n  \"tipo_financiacion\": \"interna\",\n  \"tipo_fondos\": \"Publico\",\n  \"fecha_inicio\": \"2026-02-01\",\n  \"fecha_fin\": null\n}"
+        }
+      }
+    },
+    {
+      "name": "6. Actualizar (PATCH)",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8117/api/proyecto/9001",
+          "host": [
+            "localhost"
+          ],
+          "port": "8117",
+          "path": [
+            "api",
+            "proyecto",
+            "9001"
+          ]
+        },
+        "description": "Solo lo que cambia. El cuerpo incompleto que el PUT rechaza, aquí responde 200. Y el cuerpo vacío {} responde 400, no 422.",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"fecha_inicio\": \"2026-02-01\"\n}"
+        }
+      }
+    },
+    {
+      "name": "7. Retirar (DELETE)",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8117/api/proyecto/9001",
+          "host": [
+            "localhost"
+          ],
+          "port": "8117",
+          "path": [
+            "api",
+            "proyecto",
+            "9001"
+          ]
+        },
+        "description": "Borrado LÓGICO: marca activo = FALSE. La fila se queda en la base. Un segundo DELETE responde 404."
+      }
+    },
+    {
+      "name": "8. El PUT que falla (422)",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8117/api/proyecto/9001",
+          "host": [
+            "localhost"
+          ],
+          "port": "8117",
+          "path": [
+            "api",
+            "proyecto",
+            "9001"
+          ]
+        },
+        "description": "El mismo cuerpo de la petición 6, por PUT: 422. Es la pareja que enseña la diferencia entre los dos verbos.",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"resumen\": \"Levantamiento participativo del conocimiento tradicional.\",\n  \"presupuesto\": 48000000.5,\n  \"tipo_financiacion\": \"interna\",\n  \"tipo_fondos\": \"Publico\",\n  \"fecha_inicio\": \"2026-02-01\",\n  \"fecha_fin\": null\n}"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+/* ==============================================================
+   Los pocos retoques propios del proyecto.
+
+   El aspecto lo pone Bootstrap (`bootstrap.min.css`, que se carga ANTES que
+   este archivo). Aquí va solo lo que Bootstrap no trae y este front sí
+   necesita — y se mantiene corto a propósito: cada regla que se agregue aquí
+   es una que hay que mantener a mano.
+   ============================================================== */
+
+/* El borde punteado de la tarjeta que anuncia lo que TODAVÍA no existe.
+   Bootstrap trae `border`, pero no un borde punteado. */
+.border-dashed {
+  border: 2px dashed var(--bs-border-color) !important;
+}
+
+/* Un campo de solo lectura debe VERSE de solo lectura. Bootstrap lo deja casi
+   igual que uno editable, y aquí importa: el código de un producto no se
+   puede cambiar, y la pantalla tiene que decirlo sin que nadie lo intente. */
+input[readonly] {
+  background-color: var(--bs-secondary-bg) !important;
+  color: var(--bs-secondary-color);
+  cursor: not-allowed;
+}

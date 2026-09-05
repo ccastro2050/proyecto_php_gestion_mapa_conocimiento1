@@ -1,0 +1,6 @@
+# Nada compilado ni descargado va al repositorio.
+__pycache__/
+*.pyc
+.env
+.DS_Store
+Thumbs.db

@@ -1,0 +1,91 @@
+# ==============================================================
+# Módulo de Mapa de conocimiento — versión 1, en PHP
+#
+#   Navegador → FRONT PHP (:8116) → API MAPA (:8117) → MariaDB
+#   Navegador → phpMyAdmin (:8108) ─────────────────────→ MariaDB
+#
+# Uso: docker compose up -d --build     (UN solo comando)
+# Reset de la BD: docker compose down -v && docker compose up -d
+#
+# LAS FLECHAS DICEN LA ARQUITECTURA. Fíjese en que del front NO sale ninguna
+# flecha hacia MariaDB, y que eso no es un dibujo bonito: es lo que este
+# archivo hace cumplir. `front-php` no tiene ni las credenciales de la base
+# ni el `depends_on` que la mencione, así que aunque alguien escribiera un
+# `new PDO(...)` en el front, no tendría ni con qué ni a dónde conectarse.
+#
+# El GEMELO EN PYTHON de este módulo (proyecto_paradigmas_mapa_conocimiento1)
+# levanta lo mismo sobre FastAPI y PostgreSQL, en otros puertos. Los dos se
+# pueden tener arriba al tiempo y comparar pantalla contra pantalla.
+# ==============================================================
+services:
+
+  # --- MariaDB 11 con la base del módulo COMPLETA (db/init.sql) ---
+  mariadb:
+    restart: unless-stopped   # si el PC se reinicia, este servicio revive con Docker
+    image: mariadb:11
+    environment:
+      MARIADB_ROOT_PASSWORD: paradigmas123
+      MARIADB_DATABASE: mapa_php_local
+      MARIADB_USER: mapa
+      MARIADB_PASSWORD: paradigmas123
+    volumes:
+      - mariadbdata:/var/lib/mysql            # los datos sobreviven a `down`
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+        # ↑ se ejecuta SOLO con el volumen vacío (primera vez / tras down -v)
+    ports:
+      - "13333:3306"     # puerto en su PC (para HeidiSQL/DBeaver, opcional)
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  # --- La API v1 — PHP puro + PDO ---
+  api-mapa:
+    build: ./api_mapa
+    volumes:
+      - ./api_mapa:/app   # el código montado: guardar un .php = refrescar
+    restart: unless-stopped
+    ports:
+      - "8117:8117"                # http://localhost:8117
+    environment:
+      # Conexión PDO (entre contenedores se usa el NOMBRE del servicio):
+      DB_DSN: mysql:host=mariadb;port=3306;dbname=mapa_php_local
+      DB_USUARIO: mapa
+      DB_CLAVE: paradigmas123
+    depends_on:
+      mariadb:
+        condition: service_healthy   # arranca cuando la BD RESPONDE, no por azar
+
+  # --- El front v1 — PHP puro, la pantalla del usuario ---
+  front-php:
+    build: ./front_php
+    volumes:
+      - ./front_php:/app           # el código montado: guardar un .php = refrescar
+    restart: unless-stopped
+    ports:
+      - "8116:8116"                # http://localhost:8116
+    environment:
+      # Lo ÚNICO que el front necesita saber: dónde está la API. Ni DB_DSN, ni
+      # usuario, ni clave de la base — no las tiene porque no las puede usar.
+      URL_API: http://api-mapa:8117
+      #        ↑ el NOMBRE DEL SERVICIO, no localhost: dentro de un contenedor
+      #          localhost es el contenedor mismo, y ahí no hay ninguna API.
+    depends_on:
+      - api-mapa                # y NO mariadb: el front no sabe que existe
+
+  # --- phpMyAdmin (administrador web de MariaDB, también en Docker) ---
+  phpmyadmin:
+    restart: unless-stopped
+    image: phpmyadmin:latest
+    environment:
+      PMA_HOST: mariadb              # a cuál servidor se conecta (nombre del servicio)
+      PMA_USER: mapa
+      PMA_PASSWORD: paradigmas123
+    ports:
+      - "8108:80"                    # http://localhost:8108
+    depends_on:
+      - mariadb
+
+volumes:
+  mariadbdata:
