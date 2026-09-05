@@ -78,6 +78,7 @@ front_php/                       LA PANTALLA: PHP + Bootstrap descargado
 └── publico/                     Bootstrap y los estilos, servidos del disco
 
 db/init.sql                      las 21 tablas + las semillas, derivado del script del curso
+docs/ARRAYS_Y_SUPERGLOBALES.md   arreglos y superglobales, con el código de aquí
 docs/spec_kit/                   la constitución y los documentos de la v1
 postman/                         la colección, en el orden del quickstart
 pruebas_humo/humo_front.py       el recorrido completo desde la pantalla
@@ -107,4 +108,5 @@ La segunda apaga la API a propósito y comprueba que la pantalla siga en pie
 | [Contratos](docs/spec_kit/versiones/v1_proyecto/6_contracts.md) | Cada ruta con sus desenlaces, incluidos los de error |
 | [Quickstart](docs/spec_kit/versiones/v1_proyecto/7_quickstart.md) | Los siete criterios, comprobados a mano |
 | [Guía de IA](docs/spec_kit/versiones/v1_proyecto/GUIA_IA1.md) | El prompt para reconstruir esta versión desde cero |
+| [Arreglos y superglobales en PHP](docs/ARRAYS_Y_SUPERGLOBALES.md) | Qué es un `array` en PHP y en qué se diferencia del de Java; el CRUD sobre un arreglo; las funciones de arreglo que este proyecto usa, con el conteo real; y las superglobales —`$_GET`, `$_POST`, `$_SERVER`, `$_SESSION`— con la línea del proyecto donde aparece cada una |
 | [Metodología del curso](ProyectosDeAula/docs/0_METODOLOGIA.md) | El documento que manda sobre todo lo demás |
