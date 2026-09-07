@@ -492,7 +492,7 @@ array_merge([5 => 'a'], [5 => 'b']) // [0 => 'a', 1 => 'b']  ← ¡las llaves se
 ```
 
 Ese último renglón es el que muerde: `array_merge` sobre listas **renumera**.
-Si sus llaves significan algo (un código de producto, un id), `array_merge`
+Si sus llaves significan algo (un código de catálogo, un id), `array_merge`
 se las borra.
 
 Y `array_merge` sí se usa aquí, donde renumerar es justo lo que se quiere —
