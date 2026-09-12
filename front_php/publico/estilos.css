@@ -1,3 +1,32 @@
+/* ==========================================================================
+   IDENTIDAD VISUAL — Universidad Monte Verde
+
+   Los VALORES están en marca.css, que sale del manual y no se toca.
+   Aquí va solo CÓMO se usan. Nunca se escribe un color a mano: se usa la
+   variable, para que el día que cambie el manual se cambie un archivo.
+   ========================================================================== */
+@import "marca.css";
+
+.barra { background: var(--umv-verde); color: #fff; }
+
+/* En este front la barra es la de Bootstrap: se viste esa. */
+.umv-barra { background: var(--umv-verde) !important; }
+
+/* El logosímbolo va sobre BANDA BLANCA: el manual no contempla versión
+   negativa, y sobre el verde el logo a color desaparece. */
+.umv-logo {
+  background: #fff;
+  padding: 6px 10px;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+}
+.umv-logo img {
+  height: 30px;            /* por encima del mínimo del manual (28.3 px) */
+  width: auto;
+  display: block;
+}
+
 /* ==============================================================
    Los pocos retoques propios del proyecto.
 

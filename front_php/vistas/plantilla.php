@@ -23,12 +23,13 @@
 </head>
 <body class="d-flex flex-column min-vh-100 bg-body-tertiary">
 
-  <nav class="navbar navbar-expand navbar-dark bg-dark">
+  <nav class="navbar navbar-expand navbar-dark umv-barra">
     <div class="container">
       <a class="navbar-brand fw-semibold" href="/">
         Mapa de conocimiento
         <span class="fs-6 fw-normal text-white-50 ms-2 d-none d-sm-inline">
-          Universidad de Ejemplo
+          <span class="umv-logo"><img src="/publico/logo-horizontal.png"
+             alt="Universidad Monte Verde"></span>
         </span>
       </a>
 

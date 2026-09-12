@@ -178,3 +178,41 @@ Este módulo existe dos veces, en dos lenguajes. La regla al tocar uno:
 
 Los dos se pueden levantar al tiempo —usan puertos distintos— y ponerse
 pantalla contra pantalla.
+
+## Artículo 12 — La identidad visual es ARTEFACTO DADO
+
+El sistema se construye para la **Universidad Monte Verde**, y esa
+institución **ya decidió cómo se ve**. Su Manual de Identidad Visual
+Corporativa está en la raíz del repositorio:
+[`MANUAL_DE_MARCA.md`](../../MANUAL_DE_MARCA.md).
+
+Igual que el esquema de la base, **el manual no se discute: se cumple.**
+
+| | |
+|---|---|
+| Los valores del manual viven en | `front_php/publico/marca.css` |
+| Los estilos de la aplicación usan | `var(--umv-verde)`, nunca `#1F5E4C` |
+| El logosímbolo está en | `marca/` |
+
+**Tres reglas que salen del manual y son de obligado cumplimiento:**
+
+1. **Los colores no se cambian.** El artículo tercero de la resolución que
+   adopta el manual es explícito. Un color corporativo alterado es un
+   defecto, no un detalle estético.
+2. **El logosímbolo respeta su tamaño mínimo y su área de reserva**, y va
+   sobre banda blanca: el manual no contempla versión negativa.
+3. **Los colores de estado no son los institucionales.** Un error se marca
+   en rojo alerta, no en ocre: un error en ocre se lee como decoración.
+
+**Por qué `marca.css` está aparte de los estilos de la aplicación:** porque
+son dos cosas distintas. Ahí van los **valores que fija el manual** —y que no
+se pueden cambiar—; en el otro archivo, **cómo se usan**. El día que la
+Universidad actualice su manual, se cambia un archivo y nada más.
+
+> **Universidad Monte Verde es una institución inventada para el curso.** El
+> manual está escrito como uno real porque el ejercicio es aprender a
+> trabajar con una restricción de marca, que es lo que va a encontrar en
+> cualquier organización.
+>
+> El porqué de todo esto, con la fórmula del contraste y las referencias,
+> está en [`CONCEPTOS_IDENTIDAD_VISUAL.md`](../CONCEPTOS_IDENTIDAD_VISUAL.md).
