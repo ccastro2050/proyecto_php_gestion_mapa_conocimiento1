@@ -128,3 +128,22 @@ Los conceptos del curso, **con el código de este repositorio como material**: l
 | [Sdd speckit](docs/SDD_SPECKIT.md) | La metodología con la que se trabaja este curso: la especificación manda sobre el código |
 
 > Los tutoriales de administración de la base de datos (pgAdmin, SSMS, phpMyAdmin, SQLTools) **no están todavía**: llevan capturas de pantalla que hay que tomar contra la base de este módulo.
+
+---
+
+## La identidad visual
+
+Este proyecto se construye para la **Universidad Monte Verde**, una
+institución **inventada para el curso**, que tiene su manual de marca como lo
+tendría cualquier organización real.
+
+| Archivo | Qué es |
+|---|---|
+| [`MANUAL_DE_MARCA.md`](MANUAL_DE_MARCA.md) | El Manual de Identidad Visual Corporativa: logosímbolo, paleta, tipografía, tamaño mínimo, área de reserva y usos incorrectos |
+| [`docs/CONCEPTOS_IDENTIDAD_VISUAL.md`](docs/CONCEPTOS_IDENTIDAD_VISUAL.md) | Qué es una identidad visual, por qué obliga al software y cómo se calcula el contraste — con referencias verificables |
+| [`front_php/publico/marca.css`](front_php/publico/marca.css) | Los valores del manual, en un archivo aparte de los estilos de la aplicación |
+| [`marca/`](marca/) | El logosímbolo en sus cuatro versiones |
+
+**Los colores no se cambian.** El artículo tercero de la resolución que
+adopta el manual es explícito, y la **versión 4** del proyecto evalúa que la
+pantalla lo cumpla.

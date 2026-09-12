@@ -1,0 +1,100 @@
+/* ==========================================================================
+   marca.css — La identidad visual, en un solo archivo.
+
+   Sale del MANUAL DE IDENTIDAD VISUAL CORPORATIVA de la Universidad Monte
+   Verde (Resolución de Rectoría General n.º 112 del 3 de febrero de 2026),
+   que está en la raíz del repositorio: MANUAL_DE_MARCA.md
+
+   La Universidad Monte Verde es una institución INVENTADA para este curso.
+
+   ¿Por qué en un archivo aparte de los estilos de la aplicación? Porque son
+   dos cosas distintas: aquí van los VALORES que fija el manual —y que no se
+   pueden cambiar— y allá va cómo se usan. El día que la Universidad
+   actualice su manual, se cambia este archivo y nada más.
+   ========================================================================== */
+
+:root {
+
+  /* --- PALETA INSTITUCIONAL (manual, punto 2) --------------------------
+     El artículo tercero de la resolución es explícito:
+
+        «Por ningún motivo se deben cambiar los colores corporativos.»
+
+     Así que estos valores NO son una preferencia de quien programa: son
+     una restricción, y quien los cambie está fuera de norma.             */
+
+  --umv-verde:       #1F5E4C;   /* R:31  G:94  B:76  · contraste 7,60:1  */
+  --umv-ocre:        #C9822B;   /* R:201 G:130 B:43  · contraste 3,13:1  */
+  --umv-ocre-oscuro: #A06822;   /* R:160 G:104 B:34  · contraste 4,67:1  */
+  --umv-grafito:     #232323;   /* R:35  G:35  B:35  · contraste 15,72:1 */
+
+  /* --- LA REGLA DEL OCRE ------------------------------------------------
+     El ocre institucional da 3,13:1 sobre blanco — y la misma cifra al
+     revés, blanco sobre ocre. Eso NO alcanza los 4.5:1 que pide el nivel
+     AA de las WCAG 2.2 para texto de tamaño normal.
+
+     Por eso:
+        --umv-ocre          → líneas, iconos, rellenos y TÍTULOS GRANDES
+        --umv-ocre-oscuro   → cuando el ocre tenga que llevar TEXTO NORMAL
+
+     No es una opinión: es la fórmula de contraste de las WCAG, y cualquiera
+     puede rehacer la cuenta.                                             */
+
+  /* --- COLORES DE APOYO (manual, punto 2) ------------------------------
+     Para los estados del sistema. NO se usan el verde ni el ocre
+     institucionales para decir "correcto" o "error": un error en ocre se
+     lee como decoración.                                                  */
+
+  --umv-blanco:      #FFFFFF;
+  --umv-gris-claro:  #F2F1EE;   /* fondos de tablas y tarjetas            */
+  --umv-gris-borde:  #D8D6D1;   /* líneas y separadores                   */
+  --umv-correcto:    #2E7D4F;   /* confirmaciones · contraste 5,05:1      */
+  --umv-alerta:      #B3382F;   /* errores        · contraste 5,96:1      */
+
+  /* --- ESCALA DE GRISES (manual, punto 3) ------------------------------
+     Para una tinta: el verde pasa a grafito y el ocre a una trama del
+     grafito al 30 %. Se deja calculado para no volver a equivocarse.     */
+
+  --umv-ocre-una-tinta: color-mix(in srgb, var(--umv-grafito) 30%, white);
+
+  /* --- TIPOGRAFÍA (manual, punto 4) ------------------------------------
+     Ninguna otra familia está autorizada. Si no están disponibles, se cae
+     a la genérica del sistema.                                            */
+
+  --umv-fuente-titulos: Merriweather, Georgia, "Times New Roman", serif;
+  --umv-fuente-texto:   Inter, Lato, system-ui, "Segoe UI", sans-serif;
+
+  /* --- TAMAÑO MÍNIMO DEL LOGOSÍMBOLO (manual, punto 5) -----------------
+     Por debajo de esto el monte deja de distinguirse.                    */
+
+  --umv-logo-min-ancho: 160px;  /* versión horizontal */
+  --umv-logo-min-alto:   48px;
+  --umv-isotipo-min:     32px;
+
+  /* --- ÁREA DE RESERVA (manual, punto 5) -------------------------------
+     Espacio libre alrededor del logo: la altura de la «U» del logotipo.
+     En esa franja no entra texto, ni bordes, ni otro logo.               */
+
+  --umv-area-reserva: 0.75rem;
+}
+
+/* ==========================================================================
+   El logosímbolo va sobre BANDA BLANCA (manual, punto 7.2)
+
+   La versión a color del logo no se sostiene sobre el verde institucional:
+   el manual no contempla versión negativa. Por eso la barra lleva una banda
+   blanca detrás del logo.
+   ========================================================================== */
+
+.umv-banda-logo {
+  background: var(--umv-blanco);
+  display: inline-flex;
+  align-items: center;
+  padding: var(--umv-area-reserva);
+  border-radius: 4px;
+}
+
+.umv-banda-logo img {
+  min-width: var(--umv-logo-min-ancho);
+  height: auto;
+}
