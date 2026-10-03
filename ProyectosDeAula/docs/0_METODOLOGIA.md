@@ -61,6 +61,10 @@ Las antiguas "entregas" ahora son **versiones** con spec kit propio:
 | **v3** | **JWT + sesiones + control de acceso por roles** + CRUD de usuario/rol/rol_usuario (solo admin) | Regresión v1-v2 + criterios + tag `v3` |
 | **v4** | Aplicativo completo: **10 consultas multitabla** (4+ tablas c/u), **dashboard**, **imagen corporativa con su manual de marca**, páginas corporativas, responsive/PWA y **publicación** en servidor gratuito | Regresión total + criterios + tag `v4` |
 
+> **El detalle de la versión 2 —procedimientos almacenados, disparadores,
+> maestro-detalle y claves foráneas— está en
+> [VERSION_2.md](VERSION_2.md).** Léalo antes de empezarla.
+
 ### 2.1 Calendario y evaluación del semestre (100%)
 
 Las fechas generales aplican a todos los grupos; la **fecha exacta** de su

@@ -75,6 +75,8 @@ equipos que acuerden ese alcance con el profesor; la metodología no cambia
 — cambia el volumen. Se recomienda que el spec kit de cada versión
 subdivida el trabajo por módulo (una rebanada por integrante).
 
+> **Qué se espera de la versión 2:** [VERSION_2.md](VERSION_2.md).
+
 ## 4. Recordatorios innegociables (detalle en [0_METODOLOGIA.md](0_METODOLOGIA.md))
 
 - **2 repos privados** (API y Frontend) con el profesor **`ccastro2050`**
